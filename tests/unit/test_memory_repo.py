@@ -170,7 +170,7 @@ def test_get_all_actors(in_memory_repo):
 
 def test_get_movies_by_actor(in_memory_repo):
     movie1 = in_memory_repo.get_movie_by_id(1)
-    actor = in_memory_repo.get_actor('Chris Pratt')
+    #actor = in_memory_repo.get_actor('Chris Pratt')
     result = in_memory_repo.get_movies_by_actor('Chris Pratt')
     assert movie1 in result
 
@@ -221,10 +221,6 @@ def test_add_director_review(in_memory_repo):
 #     in_memory_repo.add_user(user)
 #     print(in_memory_repo.get_all_users())
 #
-# TEST_DATA_PATH = '/Users/vivian/Desktop/235Ass2/tests/data'
-# repo = MemoryRepository()
-# memory_repository.populate(TEST_DATA_PATH, repo)
-# fun1(repo)
 
 
 
