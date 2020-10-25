@@ -3,7 +3,7 @@ import pytest
 from datetime import date, datetime
 from typing import List
 from movie_web_app.domain.model import Actor, Director, Genre, Movie, MovieWatchingSimulation, Review, User, WatchList, make_review
-
+from movie_web_app.domain.model import ActorReview, DirectorReview, make_actor_review, make_director_review
 from movie_web_app.adapters.repository import RepositoryException
 from movie_web_app.adapters import memory_repository
 from movie_web_app.adapters.memory_repository import MemoryRepository
@@ -167,6 +167,39 @@ def test_get_all_actors(in_memory_repo):
     print(movie1.actors)
 
     assert Actor('Chris Pratt') in all_actors
+
+def test_get_movies_by_actor(in_memory_repo):
+    movie1 = in_memory_repo.get_movie_by_id(1)
+    actor = in_memory_repo.get_actor('Chris Pratt')
+    result = in_memory_repo.get_movies_by_actor('Chris Pratt')
+    assert movie1 in result
+
+def test_get_movies_by_director(in_memory_repo):
+    movie1 = in_memory_repo.get_movie_by_id(1)
+    result = in_memory_repo.get_movies_by_director('James Gunn')
+    assert movie1 in result
+
+def test_add_actor_review(in_memory_repo):
+    actor = in_memory_repo.get_actor('Bradley Cooper')
+    assert len(actor.reviews) == 2
+    user = in_memory_repo.get_user('thorke')
+    make_actor_review(user, actor, "Good actor!")
+    assert len(actor.reviews) == 3
+
+def test_add_director_review(in_memory_repo):
+    director = in_memory_repo.get_director('James Gunn')
+    assert len(director.reviews) == 1
+    user = in_memory_repo.get_user('thorke')
+    make_director_review(user, director, "Good director!")
+    assert len(director.reviews) == 2
+
+
+
+
+
+
+
+
 
 # def fun1(in_memory_repo):
 #     all_genre = in_memory_repo.get_genres()

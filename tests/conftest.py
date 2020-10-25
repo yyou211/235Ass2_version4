@@ -7,7 +7,7 @@ from movie_web_app.adapters import memory_repository
 from movie_web_app.adapters.memory_repository import MemoryRepository
 
 #TEST_DATA_PATH = '/Users/vivian/Desktop/235Ass2/tests/data/Data1000Movies.csv'
-TEST_DATA_PATH = '/Users/vivian/Desktop/235Ass2/tests/data'
+TEST_DATA_PATH = '/Users/vivian/Desktop/235Ass2_version4/tests/data'
 
 @pytest.fixture
 def in_memory_repo():
