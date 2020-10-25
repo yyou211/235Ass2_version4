@@ -322,6 +322,26 @@ class Review:
     def movie(self):
         return self.__movie
 
+    @property
+    def review_text(self):
+        return self.__review_text
+
+    @property
+    def timestamp(self):
+        return self.__timestamp
+
+    def __repr__(self):
+        # return self.actor.actor_full_name + ", " + self.review_text + ", " + self.timestamp
+        return self.movie.title + ", " + self.review_text
+
+    def __eq__(self, other):
+        if not isinstance(other, Review):
+            return False
+        if self.user == other.user and self.movie == other.movie and self.review_text == other.review_text and self.timestamp == other.timestamp:
+            return True
+        else:
+            return False
+
 
 class ActorReview:
     def __init__(self, user, actor, review_text):
